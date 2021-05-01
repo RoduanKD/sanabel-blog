@@ -1,5 +1,6 @@
 <x-layouts.app>
 
+
   <div  style="margin-top: 30px;">
 
     <section class="main-content columns is-fullheight">
@@ -34,6 +35,42 @@
                     <div class="media-content">
                       <p class="title is-4">{{ $post->title }}</p>
                     </div>
+
+  <section class="hero is-large is-primary">
+    <div class="container">
+      <div class="hero-body has-text-centered">
+        <p class="title">
+          Sanabel Blog
+        </p>
+        <p class="subtitle">
+          Welcome to our Blog, here you will learn about Laravel
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="title is-3 has-text-centered">
+        Our Latest Posts
+      </div>
+      {{-- row --}}
+      <div class="columns is-multiline">
+        @foreach ($posts as $post)
+        <div class="column is-4">
+          <a href="{{ route('posts.show', $post) }}">
+            <div class="card" style="height: 100%;">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="{{ $post->featured_image }}" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                    </figure>
+
                   </div>
                   <div class="content">
                     {{ Str::limit($post->body, 30) }}
