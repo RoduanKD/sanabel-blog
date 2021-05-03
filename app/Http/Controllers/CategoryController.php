@@ -14,8 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         $categories = Category::all();
         return view('category.index', ['categories' => $categories]);
+
     }
 
     /**
@@ -25,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // TODO: return category create view
+        return view("/category.create");
     }
 
     /**
@@ -36,9 +38,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: validate the request
-        // TODO: make new category using create method
-        // TODO: return reidrect to categories index
+        $request->validate([
+            'name' => 'required|min:2|max:30',
+            'icon' => 'required|url',
+        ]);
+
+        $category = Category::create(['name' => $request->name,'icon'=> $request->icon]);
+
+        return redirect("/categories");
     }
 
     /**
@@ -49,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('category.show', ['category' => $category]);
+        return view('category.show' , ['category' => $category]);
     }
 
     /**
@@ -60,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // TODO: return edit view with $category var
+        return view('category.edit',['category' => $category]);
     }
 
     /**
@@ -72,9 +79,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // TODO: validate the request
-        // TODO: update the category using update method
-        // TODO: return reidrect to categories index
+        $category = Category::findOrFail($category);
+
+        $category = Category::create(['name' => $request->name,'icon'=> $request->icon]);
+
+        return redirect("/categories/{$category->id}");
+
+
+
     }
 
     /**
@@ -85,6 +97,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        // TODO: look for this
+        //
     }
 }

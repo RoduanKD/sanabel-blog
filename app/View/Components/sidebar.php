@@ -4,9 +4,8 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Footer extends Component
+class sidebar extends Component
 {
-    // public $post;
     /**
      * Create a new component instance.
      *
@@ -15,7 +14,6 @@ class Footer extends Component
     public function __construct()
     {
         //
-        // $this->post = $post;
     }
 
     /**
@@ -25,6 +23,6 @@ class Footer extends Component
      */
     public function render()
     {
-        return view('components.footer');
+        return view('components.sidebar');
     }
 }
