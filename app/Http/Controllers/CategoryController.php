@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -25,6 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
+        return view('category.create', ['categories' => $categories]);
         // TODO: return category create view
     }
 
@@ -39,6 +42,17 @@ class CategoryController extends Controller
         // TODO: validate the request
         // TODO: make new category using create method
         // TODO: return reidrect to categories index
+        $request->validate([
+            'name'             => 'required|min:4|max:15',
+            'icon'    => 'required|url',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        $category->save();
+
+        return redirect()->route('home')->with('success', 'Created Successfuly');
     }
 
     /**
@@ -49,7 +63,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('category.show', ['category' => $category]);
+        // dd($category);
+
+        $post=POST::all();
+        return view('category.show', ['categories' => $category , 'posts'=>$post]);
     }
 
     /**
@@ -61,6 +78,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // TODO: return edit view with $category var
+        $categories = Category::all();
+        return view('category.edit', ['categories' => $categories]);
     }
 
     /**
@@ -75,6 +94,17 @@ class CategoryController extends Controller
         // TODO: validate the request
         // TODO: update the category using update method
         // TODO: return reidrect to categories index
+        $request->validate([
+            'name'             => 'required|min:4|max:15',
+            'icon'    => 'required|url',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        $category->save();
+
+        return redirect()->route('home')->with('success', 'Updated Successfuly');
     }
 
     /**

@@ -1,14 +1,18 @@
 <x-layouts.app>
+  <div class="field">
+    <p class="control">
+      <a href='/posts/{{$post->id}}/edit'><button class="button is-info">Edit {{$post->title}}</button></a>
+      <a href='/posts/delete/{{$post->id}}'><button class="button is-danger">Delete {{$post->title}}</button></a>
+
+    </p>
+  </div>
   <section class="hero is-large is-primary">
     <div class="container">
       <div class="hero-body has-text-centered">
-        <p class="title">
-          {{ $post->title }} <a href="{{ route('posts.edit', $post) }}">edit</a>
-        </p>
         <p class="subtitle">
           Fathi, is the author, Category: {{ $post->category->name }}
           @foreach ($post->tags as $tag)
-            <span class="tag is-warning">{{ $tag->name }}</span>
+          <span class="tag is-warning">Tags:{{ $tag->name }}</span>
           @endforeach
         </p>
       </div>
@@ -37,7 +41,8 @@
             <p>
               <strong>Barbara Middleton</strong>
               <br>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit
+              non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
               <br>
               <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
             </p>
@@ -65,4 +70,4 @@
       </article>
     </div>
   </section>
-</x-layouts>
+  </x-layouts>

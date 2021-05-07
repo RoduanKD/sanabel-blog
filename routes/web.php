@@ -29,6 +29,8 @@ Route::get('/posts/create', [PostController::class, 'create'])->name('posts.crea
 Route::get('/posts/{id}/read', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+Route::get('/posts/delete/{id}', [PostController::class, 'delete'])->name("posts.delete");
+
 
 Route::resource('categories', CategoryController::class);
 Route::get('/tags/{tag}', function (Tag $tag) {
