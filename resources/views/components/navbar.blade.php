@@ -39,6 +39,7 @@
             </div>
           </div>
         </div>
+
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
@@ -48,6 +49,11 @@
               <a class="button is-light">
                 Log in
               </a>
+              <a class="button">
+                <a href="/posts/create">
+                  Create Post
+                </a>
+
             </div>
           </div>
         </div>

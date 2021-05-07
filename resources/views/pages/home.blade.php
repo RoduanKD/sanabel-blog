@@ -39,11 +39,15 @@
                     <p class="subtitle is-6">@johnsmith</p>
                   </div>
                 </div>
-                <div class="content">
+                <div class="column is-one-third">
                   {{ $post->content }}
                   <br>
                   <time datetime="2016-1-1">{{ $post->created_at }}</time>
                 </div>
+                <a class="button is-light">
+                  <a href="{{ route('posts.edit', $post) }}">
+                    Edit Post
+                  </a>
               </div>
             </div>
           </a>

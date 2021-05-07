@@ -54,6 +54,13 @@ class PostController extends Controller
 
     public function update($id, Request $request)
     {
+        $request->validate([
+            'title'             => 'required|min:4|max:255',
+            'featured_image'    => 'required|url',
+            'content'           => 'required|min:4',
+            'category_id'       => 'required|numeric|exists:categories,id',
+            'tags'              => 'array',
+        ]);
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->featured_image = $request->featured_image;
