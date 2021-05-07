@@ -20,27 +20,19 @@
         </a>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            More
+            Create
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
+            <a href="/posts/create" class="navbar-item">
+              Create Post
             </a>
-            <a class="navbar-item">
-              Jobs
+            <a href="{{route('categories.create')}}" class="navbar-item">
+              Creat Category
             </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div>
-          <div class="buttons are-small">
-            <a href='/posts/create' class="navbar-item button is-primary">
-              <strong>Create Post</strong>
-            </a>
+            {{-- <a href="{{route('tags.create')}}" class="navbar-item">
+              Create Tag
+            </a> --}}
+
           </div>
         </div>
       </div>
