@@ -13,7 +13,7 @@
 
     <div id="navbar-example" class="navbar-menu">
       <div class="navbar-start" >
-        <a class="navbar-item is-tab" href="/" style="color: white" >
+        <a class="navbar-item is-tab" href="{{ route('home') }}" style="color: white" >
           Home
         </a>
 
@@ -26,7 +26,6 @@
         </a>
       </div>
 
-
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
@@ -35,19 +34,6 @@
             </a>
             <a class="button ">
               Log in
-
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item {{ Route::currentRouteName() == 'home' ? 'is-active' : '' }}">
-            Home
-          </a>
-          <a class="navbar-item">
-            Documentation
-          </a>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              More
-
             </a>
           </div>
         </div>

@@ -11,14 +11,25 @@
       </div>
     </div>
   </section>
-  <section class="section">
+  <section class="section ">
     <div class="container">
-      <figure class="image is-128x128">
-        <img src="{{ $post->img }}">
-      </figure>
-      <p class="content">
-        {{ $post->body }}
-      </p>
+        <!-- Main container -->
+        <div class="level">
+            <!-- Left side -->
+            <div class="level-left">
+                <div class="level-item">
+                    <figure class="image is-4by3 is-128x128">
+                        <img src="{{ $post->img }}">
+                    </figure>
+                </div>
+            </div>
+            <p class="content ml-6">
+                {{ $post->body }}
+                @foreach ($post->tags as $tag)
+                    <span class="tag is-success is-medium is-light">{{ $tag->name }}</span>
+                @endforeach
+            </p>
+        </div>
     </div>
   </section>
   <section class="section">

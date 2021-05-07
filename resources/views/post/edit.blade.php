@@ -14,6 +14,26 @@
           <p class="help is-danger">{{ $message }}</p>
         @enderror
       </div>
+
+      <div class="field">
+        <label class="label">Tags</label>
+
+        <div class="control">
+          <div class="select is-multiple @error('tags')is-danger @enderror">
+            <select name="tage[]" value="{{ old('tags') }}" multiple>
+              @foreach ($post->tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+        @error('tags')
+          <p class="help is-danger">{{ $message }}</p>
+        @enderror
+      </div>
+
+
+
       <div class="field">
         <label class="label">Featured Image (URL)</label>
         <div class="control">

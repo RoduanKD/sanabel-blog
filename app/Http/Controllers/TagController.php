@@ -14,7 +14,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('tag.index', ['tags' => $tags]);
     }
 
     /**
@@ -24,7 +25,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:2|max:30',
+            'slug' => 'required|min:2|max:30',
+        ]);
+
+        $tag = Tag::create(['name' => $request->name,'slug'=> $request->slug]);
+
+        return redirect("/tags");
     }
 
     /**
@@ -64,7 +72,7 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Tags  $tags
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Tag $tag)
