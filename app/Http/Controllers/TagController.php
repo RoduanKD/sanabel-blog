@@ -45,7 +45,7 @@ class TagController extends Controller
 
         Tag::create($request->all());
 
-        return redirect()->route('tags.index');
+        return redirect()->route('tags.index')->with('sucess','Created Successfuly');
     }
 
     /**
@@ -88,7 +88,7 @@ class TagController extends Controller
 
         $tag->update($request->all());
 
-        return redirect()->route('tags.show', $tag);
+        return redirect()->route('tags.show', $tag)->with('sucess','Updated Successfuly');
     }
 
     /**
@@ -101,6 +101,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect()->route('tags.index');
+        return redirect()->route('tags.index')->with('sucess','Deleted Successfuly');
     }
 }
