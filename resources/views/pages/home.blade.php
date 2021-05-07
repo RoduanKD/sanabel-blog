@@ -1,5 +1,5 @@
-<x-layouts.app>
-  <section class="hero is-large is-primary">
+{{-- <x-layouts.app> --}}
+  {{-- <section class="hero is-large is-primary">
     <div class="container">
       <div class="hero-body has-text-centered">
         <p class="title">
@@ -10,7 +10,23 @@
         </p>
       </div>
     </div>
-  </section>
+  </section> --}}
+  <!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config('app.name') }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  </head>
+
+  <body>
+  <x-navbar />
+  <x-carousel />
+
   <section class="section">
     <div class="container">
       <div class="title is-3 has-text-centered">
@@ -20,27 +36,23 @@
       <div class="columns is-multiline">
         @foreach ($posts as $post)
         <div class="column is-4">
-          <a href="{{ route('posts.show', $post) }}">
-            <div class="card" style="height: 100%;">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="{{ $post->featured_image }}" alt="Placeholder image">
+          <a href="{{ route('posts.show', $post) }}" style="text-decoration: none;">
+            <div class="card" style="height: 100%;" id="postcard">
+              <div class="card-image" id="postimage">
+                <figure class="image is-4by3" >
+                  <img src="{{ $post-> featured_image }}" alt="Placeholder image" >
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                    </figure>
-                  </div>
                   <div class="media-content">
                     <p class="title is-4">{{ $post->title }}</p>
-                    <p class="subtitle is-6">@johnsmith</p>
+
                   </div>
                 </div>
                 <div class="content">
-                  {{ $post->content }}
+                  <span style="color: black">{{substr($post->content,0,20)}}....</span>
+                  <a href="{{ route('posts.show', $post->id) }}" style="color: blue;text-decoration: none;">read more</a>
                   <br>
                   <time datetime="2016-1-1">{{ $post->created_at }}</time>
                 </div>
@@ -52,4 +64,11 @@
       </div>
     </div>
   </section>
-</x-layouts.app>
+
+  <x-footer />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+{{-- </x-layouts.app> --}}

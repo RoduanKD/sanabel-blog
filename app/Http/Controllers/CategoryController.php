@@ -26,6 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         // TODO: return category create view
+        return view('category.create');
     }
 
     /**
@@ -39,6 +40,14 @@ class CategoryController extends Controller
         // TODO: validate the request
         // TODO: make new category using create method
         // TODO: return reidrect to categories index
+        $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'icon'             => 'required|url'
+        ]);
+         $category = Category::create($request->all());
+         $category->save();
+        //  return redirect("/categories/index");
+        return view('category.show',['category'=> $category]);
     }
 
     /**
@@ -58,9 +67,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         // TODO: return edit view with $category var
+       $category = Category::findOrFail($id);
+      // $post = Post::findOrFail($id);
+        return view('category.edit',['category' => $category]);
     }
 
     /**
@@ -70,11 +82,22 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request,Category $category)
     {
         // TODO: validate the request
         // TODO: update the category using update method
         // TODO: return reidrect to categories index
+        // $category = Category::findOrFail($id);
+        $request->validate([
+            'name'             => 'required|min:4|max:255',
+            'icon'             => 'required|url'
+        ]);
+        //$category = Category::update($request->all());
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        $category->save();
+        // return redirect("/categories/{$category->id}");
+        return view('category.show', ['category' => $category]);
     }
 
     /**
@@ -83,8 +106,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        // TODO: look for this
+        $category = Category::where('id', $id)->firstorfail()->delete();
+        return view('category.destroy');
     }
 }

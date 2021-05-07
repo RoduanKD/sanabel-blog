@@ -1,68 +1,54 @@
-<x-layouts.app>
-  <section class="hero is-large is-primary">
-    <div class="container">
-      <div class="hero-body has-text-centered">
-        <p class="title">
-          {{ $post->title }} <a href="{{ route('posts.edit', $post) }}">edit</a>
-        </p>
-        <p class="subtitle">
-          Fathi, is the author, Category: {{ $post->category->name }}
-          @foreach ($post->tags as $tag)
-            <span class="tag is-warning">{{ $tag->name }}</span>
-          @endforeach
-        </p>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <figure class="image is-128x128">
-        <img src="{{ $post->featured_image }}">
-      </figure>
-      <p class="content">
-        {{ $post->content }}
+ <x-layouts.app>
+<section class="hero is-success is-medium">
+  <div class="hero-body" style="background-color: #eb640a;">
+    <div class="container has-text-centered" >
+      <p class="title">
+        <h1 style="color:black;">{{$post->title}}</h1>
+        <h3 style="color:black;">{{$post->category->name}}</h3>
       </p>
     </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Barbara Middleton</strong>
-              <br>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
-              <br>
-              <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
-            </p>
-          </div>
-        </div>
-      </article>
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="field">
-            <p class="control">
-              <textarea class="textarea" placeholder="Add a comment..."></textarea>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control">
-              <button class="button">Post comment</button>
-            </p>
-          </div>
-        </div>
-      </article>
+  </div>
+  <div class="hero-foot" style="background-color:black;">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li><a href="{{ route('posts.edit', $post) }}"style="text-decoration:none; color:#eb640a;"><b>Edit</b></a></li>
+          <li><a href="{{ route('posts.delete', $post->id) }}" style="text-decoration:none; color:#eb640a;"><b>Delete</b></a></li>
+          <li><a href="{{ route('posts.create') }}"style="text-decoration:none; color:#eb640a;"><b>Create New Post</b></a></li>
+          <li><a href="{{ route('categories.show', $post->category->id) }}"style="text-decoration:none; color:#eb640a;"><b>Show related Posts</b></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+      <figure class="myimage">
+      <img src="{{ $post->featured_image }}">
+    </figure>
+    <div class="content mycontent">
+      <ul style="list-style-type: none" class="tag-list">
+        @foreach ($post->tags as $tag)
+          <li><a href="{{route('tags.show',$tag)}}" style="text-decoration:none; color:blue"><b>#{{$tag->name}} &nbsp;</b></a></li>
+        @endforeach
+      </ul>
+      {{ $post->content }}
     </div>
-  </section>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+        <div class="field">
+          <p class="control">
+            <textarea  cols="70" rows="3" placeholder="Add a comment..."></textarea>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <button >Post comment</button>
+          </p>
+        </div>
+  </div>
+
+</section>
 </x-layouts>

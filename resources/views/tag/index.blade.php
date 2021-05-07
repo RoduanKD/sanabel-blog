@@ -2,24 +2,18 @@
   <section class="section">
     <div class="container">
       <div class="title is-3 has-text-centered">
-        All Categories
+        All Tags
       </div>
       {{-- row --}}
       <div class="columns is-multiline">
-        @foreach ($categories as $category)
-        <div class="column is-4">
-          {{-- <a href="/posts/{{ $post->id }}"> --}}
-            <a href="{{ route('categories.show', $category) }}" style="text-decoration: none;">
+        @foreach ($tags as $tag)
+        <div class="column is-3">
+          <a href="{{route('tags.show',$tag)}}" style="text-decoration: none">
             <div class="card form">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="{{ $category->icon }}" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">{{ $category->name }}</p>
+                    <p class="title is-4">{{ $tag->name }}</p>
                   </div>
                 </div>
 
