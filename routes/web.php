@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\Tag;
@@ -33,6 +34,6 @@ Route::get('/posts/delete/{id}', [PostController::class, 'delete'])->name("posts
 
 
 Route::resource('categories', CategoryController::class);
-Route::get('/tags/{tag}', function (Tag $tag) {
-    return $tag;
-});
+Route::resource('tags', TagController::class);
+// Route::get('/tags/{tag}', function (Tag $tag) {
+//     return $tag;P});

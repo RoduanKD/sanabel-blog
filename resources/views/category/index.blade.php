@@ -25,6 +25,9 @@
                 <div class="media-content">
                   <p class="title is-4">{{$category->name}}</p>
                   <p class="subtitle is-6"><span>@</span>{{$category->name}}</p>
+                  <a href="{{route('categories.edit', $category)}}"><button class="button  is-info is-small">edit</button></a>
+                  <a href="{{route('categories.destroy',$category)}}"><button class="button is-danger is-small">delete</button></a>
+
                 </div>
               </div>
             </div>
