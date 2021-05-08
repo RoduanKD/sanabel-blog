@@ -37,9 +37,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: validate the request
-        // TODO: make new category using create method
-        // TODO: return reidrect to categories index
         $request->validate([
             'name'             => 'required|min:4|max:255',
             'icon'             => 'required|url'
@@ -86,21 +83,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request,Category $category)
     {
-        // TODO: validate the request
-        // TODO: update the category using update method
-        // TODO: return reidrect to categories index
-        // $category = Category::findOrFail($id);
         $request->validate([
             'name'             => 'required|min:4|max:255',
             'icon'             => 'required|url'
         ]);
         //$category = Category::update($request->all());
-        $category->name = $request->name;
-        $category->icon = $request->icon;
-        $category->save();
-        // return redirect("/categories/{$category->id}");
-        // return view('category.show', ['category' => $category]);
-        // $category->update($request->all()); //new
+        // $category->name = $request->name;
+        // $category->icon = $request->icon;
+        // $category->save();
+        $category->update($request->all());
         // return redirect()->route('categories.show', $category);//new
         return redirect()->route('categories.show', $category)->with('success', 'The category was updated successfully');
 

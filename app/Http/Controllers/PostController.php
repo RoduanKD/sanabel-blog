@@ -66,7 +66,6 @@ class PostController extends Controller
 
     public function update(Post $post, Request $request)
     {
-        //  $post = Post::findOrFail($id);
         $request->validate([
             'title'             => 'required|min:4|max:255',
             'featured_image'    => 'required',
@@ -74,22 +73,12 @@ class PostController extends Controller
              'category_id'       => 'required|numeric|exists:categories,id',
             'tags'              => 'array'
         ]);
-        $post->title = $request->title;
-        $post->featured_image = $request->featured_image;
-        $post->content = $request->content;
-         $post->category_id = $request->category_id;
-        // Article::where('id', $id)->update($request->all());
-        // $input = $this->request->all();
-        // $input = request()->all();
-        // unset($input['_token , _method']);
-        // $input = $request->except('_method', '_token');
-        // Client::where('id', $id)->update($input);
-        // $request = Request::only( 'title','content','featured_image','category_id');
-        // $post = Post::where('id', $id)->update($input);
-        $post->save();
+        // $post->title = $request->title;
+        // $post->featured_image = $request->featured_image;
+        // $post->content = $request->content;
+        //  $post->category_id = $request->category_id;
+         $post->update($request->all());
         $post->tags()->sync($request->tags);
-        // return redirect("/posts/{$post->id}");
-        // return view ('post.show', ['post' => $post]);
         return redirect()->route('posts.show', $post)->with('success', 'The post was updated successfully');
 
     }
