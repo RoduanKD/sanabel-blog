@@ -47,7 +47,9 @@ class CategoryController extends Controller
          $category = Category::create($request->all());
          $category->save();
         //  return redirect("/categories/index");
-        return view('category.show',['category'=> $category]);
+        // return view('category.show',['category'=> $category]);
+        return redirect()->route('categories.show', $category)->with('success', 'The category was created successfully');
+
     }
 
     /**
@@ -97,9 +99,11 @@ class CategoryController extends Controller
         $category->icon = $request->icon;
         $category->save();
         // return redirect("/categories/{$category->id}");
-        return view('category.show', ['category' => $category]);
+        // return view('category.show', ['category' => $category]);
         // $category->update($request->all()); //new
         // return redirect()->route('categories.show', $category);//new
+        return redirect()->route('categories.show', $category)->with('success', 'The category was updated successfully');
+
     }
 
     /**
@@ -111,8 +115,10 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::where('id', $id)->firstorfail()->delete();
-        return view('category.destroy');
+        // return view('category.destroy');
         // $category->delete(); //new
         // return redirect()->route('categories.index');//new
+        return redirect()->route('categories.index')->with('success', 'The category was deleted successfully');
+
     }
 }
