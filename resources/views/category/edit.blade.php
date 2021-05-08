@@ -24,8 +24,15 @@
             <p class="help is-danger">{{ $message }}</p>
           @enderror
         </div>
-
-
+        <div class="field">
+          <label class="label">slug</label>
+          <div class="control">
+            <input class="input @error('slug')is-danger @enderror" name="slug" type="text" value={{$category->slug}} placeholder="Tag name">
+          </div>
+          @error('slug')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
         <div class="field is-grouped">
           <div class="control">
             <button type="submit" class="button is-link">Update Category</button>
