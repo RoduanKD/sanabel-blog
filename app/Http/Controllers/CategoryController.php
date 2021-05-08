@@ -86,7 +86,7 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
-        return redirect()->route('categories.index')->with('sucess','Updated Successfuly');
+        return redirect()->route('categories.index', $category)->with('sucess','Updated Successfuly');
     }
 
     /**

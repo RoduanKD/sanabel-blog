@@ -29,9 +29,9 @@
             <a href="{{route('categories.create')}}" class="navbar-item">
               Creat Category
             </a>
-            {{-- <a href="{{route('tags.create')}}" class="navbar-item">
+            <a href="{{route('tags.create')}}" class="navbar-item">
               Create Tag
-            </a> --}}
+            </a>
 
           </div>
         </div>
