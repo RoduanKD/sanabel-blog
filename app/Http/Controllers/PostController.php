@@ -48,7 +48,6 @@ class PostController extends Controller
         // $post->content = $request->content;
         // $post->category_id = $request->category_id;
         $post = Post::create($request->all());
-        $post->save();
         $post->tags()->sync($request->tags);
         // return redirect()->route('posts.show', $post);
         //return redirect("/posts/{$post->id}");

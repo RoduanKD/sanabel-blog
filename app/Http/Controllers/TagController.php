@@ -45,7 +45,6 @@ class TagController extends Controller
             'slug'             => 'required'
         ]);
          $tag = Tag::create($request->all());
-         $tag->save();
          //return redirect("/tags/index");
         //  return view('tag.show',['tag'=> $tag]);
         //  return redirect()->route('tags.index');//new
@@ -110,6 +109,7 @@ class TagController extends Controller
     {
             $tag = Tag::where('id', $id)->firstorfail()->delete();
             //   return view('tag.destroy');
+            // $tag->delete();
             return redirect()->route('tags.index')->with('success', 'The Tag was deleted successfully');
 
 

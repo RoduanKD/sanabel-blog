@@ -42,7 +42,6 @@ class CategoryController extends Controller
             'icon'             => 'required|url'
         ]);
          $category = Category::create($request->all());
-         $category->save();
         //  return redirect("/categories/index");
         // return view('category.show',['category'=> $category]);
         return redirect()->route('categories.show', $category)->with('success', 'The category was created successfully');
