@@ -24,8 +24,12 @@ class PostController extends Controller
         return view('post.create', ['categories' => $categories, 'tags' => $tags]);
     }
 
-    public function show ($id) {
-        $post = Post::findOrFail($id);
+    // public function show ($id) {
+    //     $post = Post::findOrFail($id);
+    //     return view('post.show', ['post' => $post]);
+    // }
+    public function show(Post $post)
+    {
         return view('post.show', ['post' => $post]);
     }
 
@@ -50,17 +54,17 @@ class PostController extends Controller
         //return redirect("/posts/{$post->id}");
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
+        // $post = Post::findOrFail($id);
         $categories = Category::all();
         $tags = Tag::all();
         return view('post.edit', ['post' => $post,'categories' => $categories,'tags' => $tags]);
     }
 
-    public function update($id, Request $request)
+    public function update(Post $post, Request $request)
     {
-         $post = Post::findOrFail($id);
+        //  $post = Post::findOrFail($id);
         $request->validate([
             'title'             => 'required|min:4|max:255',
             'featured_image'    => 'required',

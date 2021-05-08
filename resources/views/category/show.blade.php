@@ -27,7 +27,7 @@
         <h3>Related Posts</h3>
         <ul>
           @foreach ($category->posts as $post)
-            <li><a href="{{route('posts.show',$post->id)}}" style="text-decoration:none; color:black"><b>{{ $post->title }}</b></a></li>
+            <li><a href="{{route('posts.show',$post)}}" style="text-decoration:none; color:black"><b>{{ $post->title }}</b></a></li>
           @endforeach
         </ul>
       </p>

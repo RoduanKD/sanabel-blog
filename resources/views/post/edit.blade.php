@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <div class="title is-2">Edit {{ $post->title }}</div>
-      <form action="{{route('posts.update',$post->id) }}" method="POST" class="form">
+      <form action="{{route('posts.update',$post) }}" method="POST" class="form">
         {{-- <form action="/posts/{{ $post->id }}" method="POST" class="form"> --}}
         @csrf
         <input type="hidden" name="_method" value="PUT">

@@ -50,3 +50,6 @@ Route::get('/tags/{id}/delete', [TagController::class, 'destroy'])->name('tags.d
 // Route::get('/tags/{tag}', function (Tag $tag) {
 //     return $tag;
 // });
+// Route::get('/posts/{post}', function (Post $post) {
+//     return $post;
+// });

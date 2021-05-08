@@ -38,6 +38,17 @@ border-bottom-right-radius: 20%;
     border-top-left-radius: 20%;
     font-family: 'Times New Roman', Times, serif;
 }
+#category-form{
+    margin-bottom: 30px;
+    margin-right: auto;
+    width:100%;
+    text-align: center;
+    box-shadow:20px -20px 18px #eb640a,
+              -20px  0 18px #eb640a;
+    border-top-right-radius: 20%;
+    border-bottom-right-radius: 20%;
+    font-family: 'Times New Roman', Times, serif;
+}
 .tag-list{
     margin-left: 0px;
     padding-left: 0px;

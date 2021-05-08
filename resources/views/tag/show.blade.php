@@ -23,6 +23,19 @@
         <p class="title">
           <h1 style="color:black;">{{$tag->name}}</h1>
           <h4 style="color:black;">{{$tag->slug}}</h4>
+          @if (Session::get('success'))
+          <div class="notification is-primary is-light">
+            <button class="delete"></button>
+            {{ Session::get('success') }}
+          </div>
+          @endif
+
+          @if (Session::get('danger'))
+          <div class="notification is-danger is-light">
+            <button class="delete"></button>
+            {{ Session::get('danger') }}
+          </div>
+          @endif
         </p>
       </div>
     </div>
@@ -45,7 +58,7 @@
         <h3>Related Posts</h3>
         <ul>
           @foreach ($tag->posts as $post)
-            <li><a href="{{route('posts.show',$post->id)}}" style="text-decoration:none; color:black"><b>{{ $post->title }}</b></a></li>
+            <li><a href="{{route('posts.show',$post)}}" style="text-decoration:none; color:black"><b>{{ $post->title }}</b></a></li>
           @endforeach
         </ol>
       </p>

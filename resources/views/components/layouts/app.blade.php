@@ -11,9 +11,24 @@
   </head>
 
   <body>
-    <div class="page-container">
+  <div class="page-container">
   <x-navbar />
   {{-- <x-carousel /> --}}
+  <div class="container">
+    {{-- @if (Session::get('success'))
+    <div class="notification is-primary is-light">
+      <button class="delete"></button>
+      {{ Session::get('success') }}
+    </div>
+    @endif
+
+    @if (Session::get('danger'))
+    <div class="notification is-danger is-light">
+      <button class="delete"></button>
+      {{ Session::get('danger') }}
+    </div>
+    @endif --}}
+  </div>
 
   {{ $slot }}
 

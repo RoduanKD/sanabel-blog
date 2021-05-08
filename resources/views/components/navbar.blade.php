@@ -66,7 +66,10 @@
             <a class="nav-link active" aria-current="page" href="/" style="color: #eb640a">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#" style="color: #eb640a">About us</a>
+            <a class="nav-link active" href="{{route('categories.index')}}" style="color: #eb640a">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{route('tags.index')}}" style="color: #eb640a">Tags</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #eb640a">

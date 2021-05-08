@@ -10,7 +10,7 @@
         <div class="column is-4">
           {{-- <a href="/posts/{{ $post->id }}"> --}}
             <a href="{{ route('categories.show', $category) }}" style="text-decoration: none;">
-            <div class="card form">
+            <div class="card " id="category-form">
               <div class="card-image">
                 <figure class="image is-4by3">
                   <img src="{{ $category->icon }}" alt="Placeholder image">

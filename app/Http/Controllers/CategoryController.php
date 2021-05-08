@@ -67,10 +67,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
         // TODO: return edit view with $category var
-       $category = Category::findOrFail($id);
+    //    $category = Category::findOrFail($id);
       // $post = Post::findOrFail($id);
         return view('category.edit',['category' => $category]);
     }
@@ -98,6 +98,8 @@ class CategoryController extends Controller
         $category->save();
         // return redirect("/categories/{$category->id}");
         return view('category.show', ['category' => $category]);
+        // $category->update($request->all()); //new
+        // return redirect()->route('categories.show', $category);//new
     }
 
     /**
@@ -110,5 +112,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->firstorfail()->delete();
         return view('category.destroy');
+        // $category->delete(); //new
+        // return redirect()->route('categories.index');//new
     }
 }

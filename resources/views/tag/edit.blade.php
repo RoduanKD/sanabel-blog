@@ -6,10 +6,12 @@
         <form action="{{route('tags.update',$tag) }}" method="POST" class="form">
         @csrf
         <input type="hidden" name="_method" value="PUT">
+        {{-- @method('PUT') --}}
         <div class="field">
           <label class="label">Name</label>
           <div class="control">
             <input class="input  @error('name')is-danger @enderror" name="name" type="text" placeholder="Tag Name" value="{{ old('name') }}">
+            {{-- value="{{ old('name') ?? $tag->name }}" --}}
           </div>
           @error('name')
           <p class="help is-danger">{{ $message }}</p>

@@ -48,7 +48,10 @@ class TagController extends Controller
          $tag = Tag::create($request->all());
          $tag->save();
          //return redirect("/tags/index");
-         return view('tag.show',['tag'=> $tag]);
+        //  return view('tag.show',['tag'=> $tag]);
+        //  return redirect()->route('tags.index');//new
+
+        return redirect()->route('tags.show', $tag)->with('success', 'The Tag was created successfully');
     }
 
     /**
@@ -95,7 +98,12 @@ class TagController extends Controller
         $tag->slug = $request->slug;
         $tag->save();
         // return redirect("/tags/index");
-        return view('tag.show', ['tag' => $tag]);
+        // return view('tag.show', ['tag' => $tag]);
+        // $tag->update($request->all());//new
+
+        // return redirect()->route('tags.index');//new
+        return redirect()->route('tags.show', $tag)->with('success', 'The Tag was updated successfully');
+
     }
 
     /**
@@ -107,7 +115,9 @@ class TagController extends Controller
     public function destroy($id)
     {
             $tag = Tag::where('id', $id)->firstorfail()->delete();
-              return view('tag.destroy');
+            //   return view('tag.destroy');
+            return redirect()->route('tags.index')->with('success', 'The Tag was deleted successfully');
+
 
     }
 }
