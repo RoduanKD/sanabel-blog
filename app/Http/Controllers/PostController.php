@@ -50,8 +50,10 @@ class PostController extends Controller
         $post = Post::create($request->all());
         $post->save();
         $post->tags()->sync($request->tags);
-        return redirect()->route('posts.show', $post);
+        // return redirect()->route('posts.show', $post);
         //return redirect("/posts/{$post->id}");
+        return redirect()->route('posts.show', $post)->with('success', 'The post was created successfully');
+
     }
 
     public function edit(Post $post)
@@ -87,7 +89,9 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
         // return redirect("/posts/{$post->id}");
-        return view ('post.show', ['post' => $post]);
+        // return view ('post.show', ['post' => $post]);
+        return redirect()->route('posts.show', $post)->with('success', 'The post was updated successfully');
+
     }
 
     public function destroy($id)
@@ -95,6 +99,8 @@ class PostController extends Controller
         $post = Post::where('id', $id)->firstorfail()->delete();
         // $post->delete();
         // $post->save();
-        return view('post.destroy');
+        // return view('post.destroy');
+        return redirect()->route('home')->with('success', 'The post was deleted successfully');
+
     }
 }

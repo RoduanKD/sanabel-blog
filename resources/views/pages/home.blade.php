@@ -30,6 +30,19 @@
   <section class="section">
     <div class="container">
       <div class="title is-3 has-text-centered">
+        @if (Session::get('success'))
+        <div class="notification is-primary is-light">
+          <button class="delete"></button>
+          {{ Session::get('success') }}
+        </div>
+        @endif
+
+        @if (Session::get('danger'))
+        <div class="notification is-danger is-light">
+          <button class="delete"></button>
+          {{ Session::get('danger') }}
+        </div>
+        @endif
         Our Latest Posts
       </div>
       {{-- row --}}

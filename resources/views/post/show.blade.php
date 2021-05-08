@@ -5,6 +5,19 @@
       <p class="title">
         <h1 style="color:black;">{{$post->title}}</h1>
         <h3 style="color:black;">{{$post->category->name}}</h3>
+        @if (Session::get('success'))
+        <div class="notification is-primary is-light">
+          <button class="delete"></button>
+          {{ Session::get('success') }}
+        </div>
+        @endif
+
+        @if (Session::get('danger'))
+        <div class="notification is-danger is-light">
+          <button class="delete"></button>
+          {{ Session::get('danger') }}
+        </div>
+        @endif
       </p>
     </div>
   </div>
