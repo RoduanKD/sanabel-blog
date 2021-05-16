@@ -17,6 +17,13 @@ class PostController extends Controller
 //    {
 //        $this->request = $request;
 //    }
+public function index()
+    {
+        $posts = Post::paginate(6);
+
+        return view('post.index', ['posts' => $posts]);
+    }
+
     public function create ()
     {
         $categories = Category::all();
