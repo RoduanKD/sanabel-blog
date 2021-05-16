@@ -1,11 +1,12 @@
 <?php
 
 use App\Models\Tag;
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 
@@ -19,12 +20,12 @@ use App\Http\Controllers\CategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [PageController::class, 'home'])->name('home');
+// Route::get('/', function () {
+//     $posts = Post::all();
 
-Route::get('/', function () {
-    $posts = Post::all();
-
-    return view('pages.home', ['posts' => $posts]);
-})->name('home');
+//     return view('pages.home', ['posts' => $posts]);
+// })->name('home');
 Route::get('/login', function () {
     return view('pages.login');})->name('login');
 // Route::get('/posts/read', [PostController::class, 'show'])->name('posts.show');
