@@ -26,6 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         // TODO: return category create view
+        return view('category.create');
     }
 
     /**
@@ -37,8 +38,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // TODO: validate the request
+        $request->validate([
+            'name'    => 'required|min:4|max:255',
+            'icon'    => 'required|url',
+            ]);
         // TODO: make new category using create method
+        $category = Category::create($request->all());
         // TODO: return reidrect to categories index
+        return redirect()->route('category.index', $category);
     }
 
     /**
@@ -61,6 +68,10 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // TODO: return edit view with $category var
+
+        $category =Category::findOrFail($category);
+
+        return view('category.edit', ['category' => $category]);
     }
 
     /**
@@ -73,8 +84,15 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         // TODO: validate the request
+        $request->validate([
+            'name'    => 'required|min:4|max:255',
+            'icon'    => 'required|url',
+            ]);
         // TODO: update the category using update method
+        //$category = Category::update($request->all());
         // TODO: return reidrect to categories index
+        return redirect()->route('category.index', $category);
+
     }
 
     /**
