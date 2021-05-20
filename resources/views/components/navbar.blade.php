@@ -35,10 +35,7 @@
               <a class="button is-light">
                 Log in
               </a>
-              <a class="button">
-                <a href="/posts/create">
-                  Create Post
-                </a>
+
 
             </div>
           </div>
