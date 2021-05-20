@@ -28,11 +28,11 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary">
+              <a class="button is-primary" href="{{ route('register') }}">
                 <strong>Sign up</strong>
               </a>
-              <a class="button is-light">
-                Log in
+              <a class="button is-light" href="{{ route('login') }}">
+                <strong>Log in</strong>
               </a>
             </div>
           </div>
