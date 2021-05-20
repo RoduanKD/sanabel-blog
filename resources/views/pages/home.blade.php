@@ -1,7 +1,7 @@
 <x-layouts.app>
   <section class="hero is-large is-primary">
     <div class="container">
-      <div class="hero-body has-text-centered">
+      <div class="hero-body has-text-centered" style="height: 50%;">
         <p class="title">
           Sanabel Blog
         </p>
@@ -39,20 +39,26 @@
                     <p class="subtitle is-6">@johnsmith</p>
                   </div>
                 </div>
-                <div class="column is-one-third">
-                  {{ $post->content }}
+                <div class="content">
+                  {{-- {{ $post->content }} --}}
+                  {{ Str::limit($post->content, 80) }} ...
+                  <br>
+                  <a href="{{ route('posts.show', $post) }}">
+                    read more
+                  </a>
                   <br>
                   <time datetime="2016-1-1">{{ $post->created_at }}</time>
                 </div>
-                <a class="button is-light">
-                  <a href="{{ route('posts.edit', $post) }}">
-                    Edit Post
-                  </a>
               </div>
             </div>
           </a>
         </div>
         @endforeach
+        <div class="column is-12">
+          <div class="buttons is-centered">
+            <a href="{{ route('posts.index') }}" class="button is-primary">See all posts</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
