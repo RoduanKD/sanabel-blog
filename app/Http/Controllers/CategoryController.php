@@ -48,15 +48,29 @@ class CategoryController extends Controller
     {
             $request->validate([
             'name'  => 'required|min:4|max:255',
-            'icon'  => 'required|url',
-            'slug'  => 'required|min:4|string'
+            // 'icon'  => 'required|url',
+            'slug'  => 'required|min:4|string',
+            'icon_url'  =>  'required_without:icon_upload|url|nullable',
+            'icon_upload'  =>  'required_without:icon_url|file|image'
         ]);
 
         // TODO: Handel file upload for icon
+         $category = new Category();
+         $category->name = $request->name;
+         $category->slug = $request->slug;
+        if ($request->has('icon_upload')) {
+            $icon = $request->icon_upload;
+            $path = $icon->store('category-icon', 'public');
+            $category->icon = $path;
+        } else {
+            $category->icon = $request->icon_url;
+        }
+      //  Category::create($request->all());
 
-        Category::create($request->all());
+        $category->save();
+        // Category::create($request->all());
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.show', $category);
     }
 
     /**
@@ -92,14 +106,31 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name'  => 'required|min:4|max:255',
-            'icon'  => 'required|url',
+            // 'icon'  => 'required|url',
             'slug'  => 'required|min:4|string'
         ]);
 
         // TODO: Handel file upload for icon
 
-        $category->update($request->all());
-
+         $category->update($request->all());
+    //    $category = Category::findOrFail($category->id);
+    //      $category->name = $request->name;
+    //     $category->slug = $request->slug;
+        if ($request->has('icon_upload')) {
+            $icon = $request->icon_upload;
+            $path = $icon->store('category-icon', 'public');
+            $category->icon = $path;
+        } else {
+            $category->icon = $request->icon_url;
+        }
+    // if ($request->has('icon_upload')) {
+    //     $icon = $request->icon_upload;
+    //     $path = $icon->store('category-icon', 'public');
+    //     $category->icon = $path;
+    // } else {
+    //     $category->icon = $request->icon_url;
+    // }
+        $category->save();
         return redirect()->route('categories.show', $category);
     }
 

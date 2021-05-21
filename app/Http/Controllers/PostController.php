@@ -95,7 +95,16 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->slug = $request->slug;
-        $post->featured_image = $request->featured_image;
+        if ($request->has('featured_image_upload')) {
+            $image = $request->featured_image_upload;
+            $path = $image->store('post-images', 'public');
+            $post->featured_image = $path;
+        } else {
+            $post->featured_image = $request->featured_image_url;
+        }
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        // $post->featured_image = $request->featured_image;
         $post->content = $request->content;
         $post->category_id = $request->category_id;
         $post->save();
