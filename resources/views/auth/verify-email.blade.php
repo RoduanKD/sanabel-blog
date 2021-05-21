@@ -1,5 +1,5 @@
-<x-layouts.app>
-    <x-auth-card>
+<x-layouts.auth title="Log in ">
+    <x-auth-card title="Verify Email">
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -36,4 +36,4 @@
             </form>
         </div>
     </x-auth-card>
-</x-guest-layout>
+  </x-layouts.auth>

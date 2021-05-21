@@ -1,4 +1,4 @@
-<x-layouts.auth>
+<x-layouts.auth title="Register">
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
