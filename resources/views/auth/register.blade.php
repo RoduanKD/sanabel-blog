@@ -1,86 +1,66 @@
-<x-layouts.app>
-    <section class="section is-small">
-      <div class="container">
-          <div class="columns is-centered">
-              <div class="column is-4">
-                  <div class="card">
-                      <p class="title is-4 p-3">Register</p>
-                      <div class="card-content">
-                          <div class="content">
-                              <form method="POST" action="{{ route('register') }}">
-                                  @csrf
+<x-layouts.auth title="Register">
+  <form method="POST" action="{{ route('register') }}">
+      @csrf
 
-                                  <div class="field">
-                                      <label class="label" for="email">{{ __('Name') }}</label>
-                                      <div class="control">
-                                          <input id="name" type="text"
-                                              class="input @error('name') is-danger @enderror" name="name"
-                                              value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                      </div>
+      <div class="field">
+          <label class="label" for="email">{{ __('Name') }}</label>
+          <div class="control">
+              <input id="name" type="text" class="input @error('name') is-danger @enderror" name="name"
+                  value="{{ old('name') }}" required autocomplete="name" autofocus>
+          </div>
 
-                                      @error('name')
-                                          <p class="help is-danger" role="alert">
-                                              {{ $message }}
-                                          </p>
-                                      @enderror
-                                  </div>
+          @error('name')
+              <p class="help is-danger" role="alert">
+                  {{ $message }}
+              </p>
+          @enderror
+      </div>
 
-                                  <div class="field">
-                                      <label class="label" for="email">{{ __('E-Mail Address') }}</label>
-                                      <div class="control">
-                                          <input id="email" type="email"
-                                              class="input @error('email') is-danger @enderror" name="email"
-                                              value="{{ $email ?? old('email') }}" required autocomplete="email">
-                                      </div>
-                                      @error('email')
-                                          <p class="help is-danger" role="alert">
-                                              {{ $message }}
-                                          </p>
-                                      @enderror
-                                  </div>
+      <div class="field">
+          <label class="label" for="email">{{ __('E-Mail Address') }}</label>
+          <div class="control">
+              <input id="email" type="email" class="input @error('email') is-danger @enderror" name="email"
+                  value="{{ $email ?? old('email') }}" required autocomplete="email">
+          </div>
+          @error('email')
+              <p class="help is-danger" role="alert">
+                  {{ $message }}
+              </p>
+          @enderror
+      </div>
 
-                                  <div class="field">
-                                      <label class="label" for="password">{{ __('Password') }}</label>
-                                      <div class="control">
-                                          <input id="password" type="password"
-                                              class="input @error('password') is-danger @enderror" name="password"
-                                              required autocomplete="new-password">
-                                      </div>
+      <div class="field">
+          <label class="label" for="password">{{ __('Password') }}</label>
+          <div class="control">
+              <input id="password" type="password" class="input @error('password') is-danger @enderror"
+                  name="password" required autocomplete="new-password">
+          </div>
 
-                                      @error('password')
-                                          <p class="help is-danger" role="alert">
-                                              {{ $message }}
-                                          </p>
-                                      @enderror
-                                  </div>
+          @error('password')
+              <p class="help is-danger" role="alert">
+                  {{ $message }}
+              </p>
+          @enderror
+      </div>
 
-                                  <div class="field">
-                                      <label class="label"
-                                          for="password-confirm">{{ __('Confirm Password') }}</label>
-                                       <div class="control">
-                                          <input id="password-confirm" type="password" class="input"
-                                              name="password_confirmation" required autocomplete="new-password">
-                                      </div>
-                                   </div>
-
-                                  <hr>
-
-                                  <div class="field is-form-action-buttons">
-                                      <button type="submit" class="button is-primary">
-                                          {{ __('Register') }}
-                                      </button>
-
-                                      <a class="button is-text" href="{{ route('login') }}">
-                                          {{ __('Login') }}
-                                      </a>
-                                  </div>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+      <div class="field">
+          <label class="label" for="password-confirm">{{ __('Confirm Password') }}</label>
+          <div class="control">
+              <input id="password-confirm" type="password" class="input" name="password_confirmation" required
+                  autocomplete="new-password">
           </div>
       </div>
-    </div>
-  </section>
+
+      <hr>
+
+      <div class="field is-form-action-buttons">
+          <button type="submit" class="button is-primary">
+              {{ __('Register') }}
+          </button>
+
+          <a class="button is-text" href="{{ route('login') }}">
+              {{ __('Login') }}
+          </a>
+      </div>
+  </form>
 </x-layouts.auth>

@@ -16,7 +16,17 @@
             Home
           </a>
           <a class="navbar-item"  href="{{ route('posts.index') }}">
-             Post
+            Posts
+          </a>
+          <a class="navbar-item"  href="{{ route('categories.index') }}">
+            Categories
+          </a>
+          <a class="navbar-item"  href="{{ route('tags.index') }}">
+            Tags
+          </a>
+          @auth
+          <a class="navbar-item"  href="{{ route('posts.create') }}">
+            Create Post
           </a>
           <a class="navbar-item"  href="{{ route('categories.index') }}">
              Category
@@ -24,18 +34,32 @@
           <a class="navbar-item"  href="{{ route('tags.index') }}">
             Tag
           </a>
+          @endauth
         </div>
         <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary" href="{{ route('register') }}">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light" href="{{ route('login') }}">
-                <strong>Log in</strong>
-              </a>
+          @guest
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary" href="{{ route('register') }}">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light" href="{{ route('login') }}">
+                  Log in
+                </a>
+              </div>
             </div>
-          </div>
+          @endguest
+          @auth
+            <div class="navbar-item">
+              Hi {{ Auth::user()->name }}!!
+            </div>
+            <div class="navbar-item">
+              <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <input type="submit" class="button is-light" value="Logout">
+              </form>
+            </div>
+          @endauth
         </div>
       </div>
     </div>
