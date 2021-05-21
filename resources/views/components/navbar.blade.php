@@ -15,14 +15,14 @@
           <a class="navbar-item {{ Route::currentRouteName() == 'home' ? 'is-active' : '' }}"  href="/">
             Home
           </a>
-          <a class="navbar-item"  href="{{ route('posts.create') }}">
-            Create Post
+          <a class="navbar-item"  href="{{ route('posts.index') }}">
+             Post
           </a>
-          <a class="navbar-item"  href="{{ route('categories.create') }}">
-            Create Catygory
+          <a class="navbar-item"  href="{{ route('categories.index') }}">
+             Category
           </a>
-          <a class="navbar-item"  href="{{ route('tags.create') }}">
-            Create Tag
+          <a class="navbar-item"  href="{{ route('tags.index') }}">
+            Tag
           </a>
         </div>
         <div class="navbar-end">

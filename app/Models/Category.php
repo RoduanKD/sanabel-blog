@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protect $fillable = ['name', 'icon', 'slug'];
+    protected $fillable = ['name', 'icon', 'slug'];
 
     /**
      * Get the posts for the blog post.
