@@ -48,7 +48,7 @@
 
           <div class="control">
             <div class="select is-multiple @error('tags')is-danger @enderror">
-              <select name="tags[]" value="{{ old('tags') }}" multiple>
+              <select name="tags[]" multiple>
                 @foreach ($tags as $tag)
                   <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                 @endforeach
@@ -73,7 +73,7 @@
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
-            <textarea class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content',$post->content) }}</textarea>
+            <textarea class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content', $post->content) }}</textarea>
           </div>
           @error('content')
             <p class="help is-danger">{{ $message }}</p>
