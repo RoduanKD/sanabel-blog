@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('featured_image');
             $table->text('content');
-            $table->text('slug');
             $table->integer('likes_count')->default(0)->unsigned();
             $table->timestamps();
         });

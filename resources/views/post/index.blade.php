@@ -2,15 +2,25 @@
   <section class="hero is-large is-primary">
     <div class="container">
       <div class="hero-body has-text-centered" style="height: 50%;">
+
         <p class="title">
           Sanabel Blog
         </p>
         <p class="subtitle">
           Welcome to our Blog, here you will learn about Laravel
         </p>
+        <p class="title">
+          <button class="button" class="button is-success"><a href="{{ route('posts.create') }}"><b>Create New post</b></a></button>
+         </p>
+
       </div>
     </div>
   </section>
+  {{-- <section class="section">
+    <div class="container">
+      {{ print_r($post) }}
+    </div>
+  </section> --}}
   <section class="section">
     <div class="container">
       <div class="title is-3 has-text-centered">
