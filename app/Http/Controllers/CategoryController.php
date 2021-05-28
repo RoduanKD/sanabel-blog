@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use App\Notifications\CategoryPublished;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+
 
 class CategoryController extends Controller
 {
@@ -66,6 +69,8 @@ class CategoryController extends Controller
             $category->icon = $request->icon_url;
         }
       //  Category::create($request->all());
+        Notification::send(User::all() , new CategoryPublished($category));
+
 
         $category->save();
         // Category::create($request->all());
