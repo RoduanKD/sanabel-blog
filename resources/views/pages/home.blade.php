@@ -20,7 +20,6 @@
       <div class="columns is-multiline">
         @foreach ($posts as $post)
         <div class="column is-4">
-          <a href="{{ route('posts.show', $post) }}">
             <div class="card" style="height: 100%;">
               <div class="card-image">
                 <figure class="image is-4by3">
