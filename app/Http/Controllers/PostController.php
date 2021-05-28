@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Notifications\PostPublished;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
@@ -26,8 +27,14 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::paginate(6);
+        // $response = Http::get('https://jsonplaceholder.typicode.com/posts/1');
 
-        return view('post.index', ['posts' => $posts]);
+        // $post = $response->json();
+
+        if (request()->expectsJson()) {
+            return $posts;
+        }
+        return view('post.index', ['posts' => $posts/*, 'post' => $post*/]);
     }
 
     public function create ()

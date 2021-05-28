@@ -16,6 +16,11 @@
       </div>
     </div>
   </section>
+  {{-- <section class="section">
+    <div class="container">
+      {{ print_r($post) }}
+    </div>
+  </section> --}}
   <section class="section">
     <div class="container">
       <div class="title is-3 has-text-centered">
