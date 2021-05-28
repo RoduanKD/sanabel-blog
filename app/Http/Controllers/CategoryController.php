@@ -69,10 +69,10 @@ class CategoryController extends Controller
             $category->icon = $request->icon_url;
         }
       //  Category::create($request->all());
-        Notification::send(User::all() , new CategoryPublished($category));
 
 
-        $category->save();
+      $category->save();
+      Notification::send(User::all() , new CategoryPublished($category));
         // Category::create($request->all());
 
         return redirect()->route('categories.show', $category);

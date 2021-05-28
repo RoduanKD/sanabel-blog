@@ -43,7 +43,7 @@ class CategoryPublished extends Notification
         return (new MailMessage)
         ->line('There was a new Category published on Sanabel Blog.')
         ->line($this->category->name)
-        // ->action('Notification Action', route('categories.show', $this->category))
+        ->action('Notification Action', route('categories.show', ['category' => $this->category]))
         ->line('Thank you for using our application!');
     }
 

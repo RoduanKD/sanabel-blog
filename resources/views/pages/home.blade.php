@@ -40,7 +40,7 @@
                 </div>
                 <div class="content">
                   {{-- {{ $post->content }} --}}
-                  {{ Str::limit($post->content, 80) }} ...
+                  {{ Str::limit(strip_tags($post->content), 80) }} ...
                   <br>
                   <a href="{{ route('posts.show', $post) }}">
                     read more
