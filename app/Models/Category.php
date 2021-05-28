@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'icon'];
+    protected $fillable = ['name', 'slug', 'icon'];
 
     /**
      * Get the posts for the blog post.
@@ -18,4 +18,14 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+    public function getIconAttribute($value)
+    {
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            return $value;
+        }
+
+        return asset("storage/{$value}");
+    }
+
+
 }
