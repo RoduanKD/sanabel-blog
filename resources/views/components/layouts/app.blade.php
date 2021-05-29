@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="{{ App::getLocale() }}" dir="{{ App::getLocale() == 'ar' ? 'rtl':'ltr'}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }}</title>
+    @if (App::getLocale() == 'en')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    @endif
+    @if (App::getLocale() == 'ar')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma-rtl.min.css">
+    @endif
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     {{ $styles ?? '' }}
   </head>

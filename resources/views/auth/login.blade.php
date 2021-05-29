@@ -2,7 +2,7 @@
   <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class="field">
-      <label class="label" for="email">{{ __('E-Mail Address') }}</label>
+      <label class="label" for="email">{{ __('auth.email') }}</label>
       <div class="control">
           <input id="email" type="email" class="input @error('email') is-danger @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
       </div>

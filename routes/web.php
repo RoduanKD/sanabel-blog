@@ -5,8 +5,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Mail\Welcome;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +28,17 @@ Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
 
 Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
+
+Route::get('/lang/{locale}', function ($locale, Request $request) {
+    if (! in_array($locale, ['en', 'ar'])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
+    $request->session()->put('locale', $locale);
+
+    return redirect()->back();
+})->name('locale.toggle');
 
 require __DIR__.'/auth.php';
