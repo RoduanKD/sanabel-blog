@@ -9,9 +9,11 @@
         <p class="subtitle">
           Welcome to our Blog, here you will learn about Laravel
         </p>
+        @can('create-post')
         <p class="title">
           <button class="button" class="button is-success"><a href="{{ route('posts.create') }}"><b>Create New post</b></a></button>
          </p>
+        @endcan
 
       </div>
     </div>

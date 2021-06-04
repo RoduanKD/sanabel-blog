@@ -33,6 +33,11 @@ class Post extends Model
         return asset("storage/{$value}");
     }
 
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     // public function getImageAttribute()
     // {
     //     return asset("storage/{$this->featured_image}");
