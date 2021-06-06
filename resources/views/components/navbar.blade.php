@@ -49,6 +49,11 @@
               </form>
             </div>
           @endauth
+          <div class="navbar-item">
+            <a class="button is-info" href="{{ route('locale.toggle', App::getLocale() == 'ar' ? 'en': 'ar') }}">
+              {{ App::getLocale() == 'ar' ? 'en': 'ar' }}
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Notifications\PostPublished;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 
@@ -21,7 +22,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('verified')->only('create');
+        // $this->middleware(['verified', 'is_admin'])->only('create');
     }
 
     public function index()
@@ -51,6 +52,8 @@ class PostController extends Controller
     }
 
     public function store (Request $request) {
+        $this->authorize('create-post');
+
         $request->validate([
             'title'                     => 'required|min:4|max:255',
             'content'                   => 'required|min:4',
@@ -92,6 +95,8 @@ class PostController extends Controller
 
     public function update(Post $post, Request $request)
     {
+        $this->authorize('update-post', $post);
+
         $request->validate([
             'title'                     => 'required|min:4|max:255',
             'featured_image_url'        => 'required_without:featured_image_upload|url|nullable',
