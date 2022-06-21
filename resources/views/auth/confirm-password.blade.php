@@ -1,8 +1,5 @@
-<x-layouts.app>
-  <div class="card">
-    <p class="title is-4">{{ $title }}</p>
-    <div class="card-content">
-      <div class="content">
+<x-layouts.auth title="confirm-password">
+
         <form method="POST" action="{{ route('login') }}">
           @csrf
 
@@ -60,4 +57,4 @@
       </div>
     </div>
   </div>
-</x-guest-layout>
+</x-layouts.auth>

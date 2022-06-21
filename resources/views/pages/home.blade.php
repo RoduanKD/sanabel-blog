@@ -20,7 +20,6 @@
       <div class="columns is-multiline">
         @foreach ($posts as $post)
         <div class="column is-4">
-          <a href="{{ route('posts.show', $post) }}">
             <div class="card" style="height: 100%;">
               <div class="card-image">
                 <figure class="image is-4by3">
@@ -41,7 +40,7 @@
                 </div>
                 <div class="content">
                   {{-- {{ $post->content }} --}}
-                  {{ Str::limit($post->content, 80) }} ...
+                  {{ Str::limit(strip_tags($post->content), 80) }} ...
                   <br>
                   <a href="{{ route('posts.show', $post) }}">
                     read more

@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <div class="title is-2">Create New Category</div>
-      <form action="{{ route('categories.store') }}" method="POST">
+      <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="field">
               <label class="label">Category Name</label>
@@ -25,14 +25,35 @@
             </div>
 
         <div class="field">
-          <label class="label">Category Icon</label>
+          <label class="label">Category Icon (URL)</label>
           <div class="control">
-            <input class="input @error('icon')is-danger @enderror" name="icon" type="text" value="{{ old('icon') }}" placeholder="http://hi.com/icon.jpg">
+            <input class="input @error('icon_url')is-danger @enderror" name="icon_url" type="text" value="{{ old('icon_url') }}" placeholder="http://hi.com/icon.jpg">
           </div>
-          @error('icon')
+          @error('icon_url')
             <p class="help is-danger">{{ $message }}</p>
           @enderror
         </div>
+
+        <div class="field">
+          <label class="label">Category Icon (upload)</label>
+          <div class="file">
+            <label class="file-label">
+              <input class="file-input" type="file" name="icon_upload" accept="image/*">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose an icon...
+                </span>
+              </span>
+            </label>
+          </div>
+          @error('icon_upload')
+            <p class="help is-danger">{{ $message }}</p>
+          @enderror
+        </div>
+
 
         <div class="field is-grouped">
           <div class="control">

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\User;
 use App\Notifications\CategoryPublished;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
-
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
     }
 
     /**
@@ -25,20 +26,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index()
     {
-        $categories = Category::all();
-        return view('category.index', ['categories' => $categories]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('category.create');
+        return Category::all();
     }
 
     /**
@@ -75,7 +65,7 @@ class CategoryController extends Controller
       Notification::send(User::all() , new CategoryPublished($category));
         // Category::create($request->all());
 
-        return redirect()->route('categories.show', $category);
+        return ['message' => 'category created', 'data' => $category];
     }
 
     /**
@@ -86,18 +76,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('category.show', ['category' => $category]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        return view('category.edit',  ['category' => $category]);
+        return $category;
     }
 
     /**
@@ -107,36 +86,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Category $category, Request $request)
+    public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name'  => 'required|min:4|max:255',
-            // 'icon'  => 'required|url',
-            'slug'  => 'required|min:4|string'
-        ]);
+        $category->update($request->all());
 
-        // TODO: Handel file upload for icon
-
-         $category->update($request->all());
-    //    $category = Category::findOrFail($category->id);
-    //      $category->name = $request->name;
-    //     $category->slug = $request->slug;
-        if ($request->has('icon_upload')) {
-            $icon = $request->icon_upload;
-            $path = $icon->store('category-icon', 'public');
-            $category->icon = $path;
-        } else {
-            $category->icon = $request->icon_url;
-        }
-    // if ($request->has('icon_upload')) {
-    //     $icon = $request->icon_upload;
-    //     $path = $icon->store('category-icon', 'public');
-    //     $category->icon = $path;
-    // } else {
-    //     $category->icon = $request->icon_url;
-    // }
-        $category->save();
-        return redirect()->route('categories.show', $category);
+        return $category;
     }
 
     /**
@@ -147,8 +101,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-
-        return redirect()->route('categories.index');
+        //
     }
 }

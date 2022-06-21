@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $fillable = ['title', 'slug','category_id', 'featured_image'];
 
     public function category()
     {
@@ -29,6 +31,11 @@ class Post extends Model
         }
 
         return asset("storage/{$value}");
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 
     // public function getImageAttribute()

@@ -8,6 +8,8 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Notifications\PostPublished;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
@@ -20,14 +22,20 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('verified')->only('create');
+        // $this->middleware(['verified', 'is_admin'])->only('create');
     }
 
     public function index()
     {
         $posts = Post::paginate(6);
+        // $response = Http::get('https://jsonplaceholder.typicode.com/posts/1');
 
-        return view('post.index', ['posts' => $posts]);
+        // $post = $response->json();
+
+        if (request()->expectsJson()) {
+            return $posts;
+        }
+        return view('post.index', ['posts' => $posts/*, 'post' => $post*/]);
     }
 
     public function create ()
@@ -44,9 +52,12 @@ class PostController extends Controller
     }
 
     public function store (Request $request) {
+        $this->authorize('create-post');
+
         $request->validate([
             'title'                     => 'required|min:4|max:255',
             'content'                   => 'required|min:4',
+            'slug'                      => 'required|min:4',
             'category_id'               => 'required|numeric|exists:categories,id',
             'tags'                      => 'array',
             'featured_image_url'        => 'required_without:featured_image_upload|url|nullable',
@@ -78,30 +89,40 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-
         $post = Post::findOrFail($id);
-
         return view('post.edit', ['post' => $post] ,  ['categories' => $categories, 'tags' => $tags]);
     }
 
-    public function update($id, Request $request)
+    public function update(Post $post, Request $request)
     {
+        $this->authorize('update-post', $post);
+
         $request->validate([
-            'title'             => 'required|min:4|max:255',
-            'featured_image'    => 'required|url',
-            'content'           => 'required|min:4',
-            'category_id'       => 'required|numeric|exists:categories,id',
-            'tags'              => 'array',
+            'title'                     => 'required|min:4|max:255',
+            'featured_image_url'        => 'required_without:featured_image_upload|url|nullable',
+            'featured_image_upload'     => 'required_without:featured_image_url|file|image',            'content'           => 'required|min:4',
+            'category_id'               => 'required|numeric|exists:categories,id',
+            'tags'                      => 'array',
         ]);
 
         // TODO: Handel file upload here
+        $post->update($request->all());
 
-        $post = Post::findOrFail($id);
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->featured_image = $request->featured_image;
-        $post->content = $request->content;
-        $post->category_id = $request->category_id;
+        // $post = Post::findOrFail($id);
+        // $post->title = $request->title;
+        // $post->slug = $request->slug;
+        if ($request->has('featured_image_upload')) {
+            $image = $request->featured_image_upload;
+            $path = $image->store('post-images', 'public');
+            $post->featured_image = $path;
+        } else {
+            $post->featured_image = $request->featured_image_url;
+        }
+        // $post->title = $request->title;
+        // $post->slug = $request->slug;
+        // $post->featured_image = $request->featured_image;
+        //$post->content = $request->content;
+        // $post->category_id = $request->category_id;
         $post->save();
         $post->tags()->sync($request->tags);
 

@@ -110,7 +110,7 @@
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
-            <div id="editor" class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{{ old('content') }}</div>
+            <div id="editor" class="textarea @error('content')is-danger @enderror" name="content" placeholder="Post Content">{!! old('content') !!}</div>
             <input type="hidden" name="content" id="content">
           </div>
           @error('content')
